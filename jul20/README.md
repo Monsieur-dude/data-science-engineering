@@ -40,19 +40,19 @@ ___
         * 리스트 속 각 값의 데이터 타입은 달라도 상관 없음 ex) [1, 'apple', [1,2,3], True]
         * 데이터가 없는 빈 리스트 생성 가능(받아 올 데이터가 어느 정도일지 모를 때 유용함)
         * 여러 개의 리스트 덧셈, 곱셈이 가능
-        * `list` 기능
-            * `list`[i] 리스트의 인덱스 값
-            * `list`[i] = new_data 
-                * 기존 데이터를 새 데이터로 변경 가능
-            * `list`[**i_start:i_end:i_stem**]
-                * i_start 부터 (i_end-1) 까지 리스트를 i_stem 간격으로 데이터를 가져옴
-            * `del` `list`[i] 리스트 인덱스 데이터 삭제
-            * `i` in `list`[]
-                * boolean 으로 출력 
-            * 메서드(`method`)
-                1. .`apprend`() 리스트 마지막 인덱스에 데이터를 추가
-                2. .`insert`(i, data) i번째 인덱스에 data를 추가하고 나머지 데이터들은 인덱스가 하나씩 뒤로 밀림
-                3. .`extend`([data1, data2, data3, ...]) 리스트 확장
+    * `list` 기능
+        * `list`[i] 리스트의 인덱스 값
+        * `list`[i] = new_data 
+            * 기존 데이터를 새 데이터로 변경 가능
+        * `list`[**i_start:i_end:i_stem**]
+            * i_start 부터 (i_end-1) 까지 리스트를 i_stem 간격으로 데이터를 가져옴
+        * `del` `list`[i] 리스트 인덱스 데이터 삭제
+        * `i` in `list`[]
+            * boolean 으로 출력 
+    * 메서드(`method`)
+        1. .`apprend`() 리스트 마지막 인덱스에 데이터를 추가
+        2. .`insert`(i, data) i번째 인덱스에 data를 추가하고 나머지 데이터들은 인덱스가 하나씩 뒤로 밀림
+        3. .`extend`([data1, data2, data3, ...]) 리스트 확장
 
 ###
 ```python
@@ -75,10 +75,10 @@ ___
         * 데이터 처리 속도에서 효율적이기 때문에 머신러닝, 딥러닝 시 `list` -> `tuple` 로 변경시켜 관리
         * `list` 와 특징이 매우 유사함
         * `tuple` 속 데이터는 변경, 삭제 불가
-        * `tuple` 기능
-            * 메서드(`method`)
-                1. .`index`(data) data 인덱스 값 
-                2. .`count`(data) data 개수
+    * `tuple` 기능
+    * 메서드(`method`)
+        1. .`index`(data) data 인덱스 값 
+        2. .`count`(data) data 개수
                 ###
 ```python
     tuple1 = (10, 150, 702, 3054, 33, 10, 10)
@@ -88,26 +88,71 @@ ___
 ```
 ###
 
-5. 딕셔너리(`dict`)
+
+5. 세트(`set`)
+    > 수학에서 집합이라는 개념과 유사
+    * `set` = {}
+        * 데이터의 순서가 없고, 데이터가 중복될 수 없음
+        * 교집합, 합집합, 차집합 등이 있고, 메서드를 통해 구현 가능
+
+    * 세트의 종류 및 구현 방법
+        1. 교집합(intersection) : `A ∩ B` 또는 `A & B`, `and` 의 개념, A.`intersection`(B)
+        2. 합집합(union) : `A ∪ B` 또는 `A | B`, `or` 의 개념, A.`union`(B)
+        3. 차집합(difference) : A - B, `A ^ B`, A.`difference`(B)
+
+    * 리스트, 튜플, 세트 간 타입 변환
+        * `list`(), `tuple`(), `set`() 이용해서 변환 가능
+
+###
+
+```python
+set1 = {1, 2, 3}
+set2 = {1, 2, 3, 3}
+
+type(set1)                  # set
+print(set1)                 # {1, 2, 3}
+print(set2)                 # {1, 2, 3} 중복된 3은 한 번만 출력
+
+A = {1, 2, 3, 4, 5}         # set A
+B = {4, 5, 6, 7, 8, 9, 10}  # set B
+A.intersection(B)           # A ∩ B , {4, 5}
+A.union(B)                  # A ∪ B , {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+A.difference(B)             # {1, 2, 3}
+
+
+a = [1, 2, 3, 4, 5]
+type(a)                     # list
+print(a)                    # [1, 2, 3, 4, 5]
+b = tuple(a)
+type(b)                     # tuple
+print(b)                    # (1, 2, 3, 4, 5)
+c = set(a)
+type(c)                     # set
+print(c)                    # {1, 2, 3, 4, 5}
+```
+###
+
+
+6. 딕셔너리(`dict`)
     > `key` 와 `value` 값이 쌍으로 구성
     * `dict`{key0:value, key1:value, key2,value} 
         * `key` 와 `value` 가 쌍으로 구성되어있기 때문에, 데이터의 순서가 없음
         * 인덱스가 아닌 `key`, `value` 로 데이터를 찾고 다룰 수 있음
         * JSON 형태의 데이터
         * `key` 는 숫자(`int`, `float`)와 문자열(`str`), `value` 는 어떤 데이터 형태(`type`)도 가능함 
-        * `dict` 기능
-            * `dict`[`key`] = `value` 
-                * 새로운 `key` 혹은 기존의 `key` 를 변경
-            * `del` `dict`[`key`]
-                * `key` 와 그에 해당하는 `value` 값을 삭제
-            * 메서드(`method`)
-                > 메서드 활용하여 주로 `list`()로 변형함
-                1. .`keys`()   `key` 를 `dict_keys` 타입으로 출력 
-                2. .`values`()   `value` 를
-                `dict_values` 타입으로 출력
-                3. .`items`()   `key`와 `value`를 한 쌍으로 하는 `tuple` 형태의 `dict_items` `type` 으로 나옴
-                4. .`clear`() 모든 `key`, `value` 를 삭제함
-                5. .`update`(`dict_new`) 기존에 있는 딕셔너리에 `dict_new`를 추가함
+    * `dict` 기능
+        * `dict`[`key`] = `value` 
+            * 새로운 `key` 혹은 기존의 `key` 를 변경
+        * `del` `dict`[`key`]
+            * `key` 와 그에 해당하는 `value` 값을 삭제
+    * 메서드(`method`)
+        > 메서드 활용하여 주로 `list`()로 변형함
+        1. .`keys`()   `key` 를 `dict_keys` 타입으로 출력 
+        2. .`values`()   `value` 를
+        `dict_values` 타입으로 출력
+        3. .`items`()   `key`와 `value`를 한 쌍으로 하는 `tuple` 형태의 `dict_items` `type` 으로 나옴
+        4. .`clear`() 모든 `key`, `value` 를 삭제함
+        5. .`update`(`dict_new`) 기존에 있는 딕셔너리에 `dict_new`를 추가함
                 ###
 
 ```python
