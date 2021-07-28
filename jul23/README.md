@@ -174,7 +174,6 @@ ___
         * 만족하지 않을 경우는 <코드 블록> 실행하지 않고 `while` 명령문에서 빠져나옴
         * 반복 범위가 없을 때 주로 이용 (반대로, 반복 범위 있을 경우 `for` 문을 주로 씀)
         * `while` True : 항상 참(`True`)이므로 <코드 블록>이 무한히 반복 수행함. 따라서 주의!
-        
     
     ###
     ```python
@@ -194,4 +193,104 @@ ___
     while True :              # 항상 True이므로 print("Never Do This!")를 무한 반복함, 주의할 것!
         print("Never Do This!") 
     ```
-    ###    
+    ### 
+
+3. `break` , `continue`
+    > 반복문(`loop`)을 빠져나올 수 있는 예약어
+    * 공통점 : 조건에 맞을 경우, 실행 중인 코드 블록을 탈출함.
+    * 차이점 :
+        * `break` : 반복중인 코드 블록(`loop`)을 끝냄
+        * `continue` : 현재 진행중인 반복문(`loop`)의 처음으로 돌아감
+
+    ###
+    ```python
+    
+    ## break - 1
+    
+    k = 0
+    while True :
+        k = k + 1
+        if k > 3 : # k가 3보다 크면
+            break  # break로 while 을 빠져나옴
+        print(k)   # 반복문에 들어간 k 값을 출력.
+    print('Now, ', k, 'is bigger than 3. So the loop is terminated')   # k 값이 4 부터는 while loop 돌지 않고, 이 부분을 출력함.
+    
+    ## break - 2
+    
+    for k in range(10) :
+        if k > 2 :
+            break
+        print(k)
+    print('Now, ', k, 'is bigger than 2. So the loop is terminated')
+
+    ## continue - 1
+
+    for k in range(5) :
+        if k == 2 :
+            continue
+        print(k)
+    print("현재 k 값은 " , k)
+
+    ## break, continue in while loop 
+
+    k = 0
+    while True :
+        k += 1
+
+        if k == 2 :
+            print('continue next')
+            continue
+        if k > 4 :
+            break
+
+        print(k)
+    print('Now, ', k, 'is bigger than 4. So the loop is terminated')
+
+    ```
+    ###
+    ###
+
+
+### 번외 ##
+- `Comprehension` 
+    > `list`, `set`,`dictionary` 등 데이터타입 명령문을 간략히 한 줄로 만드는 작업, 연산 속도를 증가시킬 수 있음
+    * 기본 구조 
+        - [ < 반복 실행문 > `for` < 반복 변수 > in < 반복 범위 > ]
+        - [ < 반복 실행문 > `for` < 반복 변수 > in < 반복 범위 > *`if` < 조건문 >* ]
+    ###
+    ```python
+    ## comprehension 쓰지 않았을 때,
+
+    numbers = [1, 2, 3, 4, 5]
+    square = []
+
+    for i in numbers :
+        square.append(i**2)
+    print(square)
+
+    ## comprehension 썼을 때,
+
+    numbers = [1, 2, 3, 4, 5]
+    square = [ i **2 for i in numbers]
+    print(square)
+    
+
+    # if 를 포함한 comprehension
+
+    ## comprehension 쓰지 않았을 때,
+
+    numbers = [1, 2, 3, 4, 5]
+    square = []
+
+    for i in numbers :
+        if i >= 3 :
+        square.append(i**2)
+    print(square)
+
+    ## comprehension 썼을 때,
+
+    numbers = [1, 2, 3, 4, 5]
+    square = [ i**2 for i in numbers if i >= 3]
+    print(square)
+    
+    ```
