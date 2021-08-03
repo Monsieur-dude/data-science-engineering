@@ -9,7 +9,7 @@ ___
         * str.`strip`([chars]])
             * 문자열 양쪽의 공백, 특수문자, 문자열을 제거할 수 있음
             * .`rstrip`(), .`lstrip`()
-        * " ".`join`(seq)
+        * "추가하고싶은문자열".`join`(seq)
             * 리스트의 모든 항목을 하나의 문자열로 만들 수 있음
         * str.`find`(search_str), str.`find`(search_str, start, end)
             * search_str 과 처음으로 일치하는 str의 위치를 출력
@@ -37,7 +37,7 @@ ___
     "에스프레소 아메리카노 카페라떼 카푸치노".split(maxsplit=2) # 반환값 : ["에스트레스", "아메리카노", "카페라떼 카푸치노"]
 
     phone_number = "+82-01-2345-6789"
-    split_num = phone_number.split("-", 4)      # ["+82", "01", "2345", "6789"]
+    split_num = phone_number.split("-", 1)      # ["+82", "01", "2345", "6789"]
 
     ## str.strip()
 
@@ -104,3 +104,68 @@ ___
     ```
     ###
 * 텍스트 파일 속 데이터를 다루기
+    * 텍스트 파일("coffeeShopSales.txt") 다루기 실습
+
+    ###
+    ```python
+    !cat "coffeeShopSales.txt"
+
+    날짜    에스프레소  아메리카노  카페라테  카푸치노
+    10.15       10  	50         45       20   
+    10.16       12		45         41       18
+    10.17       11		53         32       25
+    10.18       15		49         38       22
+    
+    ## 1. 파일 읽기
+
+    file_name = "coffeeShopSales.txt"
+    f = open(file_name)
+    for line in f :
+        print(line, end="")
+    f.close()
+
+    ## 2. 데이터 헤더 처리 .readline()
+
+    header = f.readline()
+    
+    ## 3. 항목 이름을 리스트로 만들기 .split()
+
+    header_list = header.split()
+
+    ## 4. 헤더를 제외한 데이터를 리스트로 만들기 .split()
+
+    for line in f :
+        data_list = line.split()
+
+    ## 5. 각 커피별로 4일간 총 판매량을 리스트로 변환 .split(), .append()
+
+    espresso = []
+    americano = []
+    cappucino = []
+    cafelatte = []
+
+    for line in f :
+        data_list = line.split()
+            
+        espresso.append(int(data_list[1]))      # 일별 판매량을 항목으로 갖는 리스트
+        americano.append(int(data_list[2]))     # 일별 판매량을 항목으로 갖는 리스트
+        cappucino.append(int(data_list[3]))     # 일별 판매량을 항목으로 갖는 리스트
+        cafelatte.append(int(data_list[4]))     # 일별 판매량을 항목으로 갖는 리스트
+    
+    ## 6. 커피별 일 일 판매량 평균 .format(), sum(), len()
+    
+    print("{} 4일 판매량: {}잔, 하루 평균 판매량: {}".format(header_list[1], sum(espresso), sum(espresso)/len(espresso)))  
+    print("{} 4일 판매량: {}잔, 하루 평균 판매량: {}".format(header_list[2], sum(americano), sum(americano)/len(americano)))
+    print("{} 4일 판매량: {}잔, 하루 평균 판매량: {}".format(header_list[3], sum(cappucino), sum(cappucino)/len(cappucino)))
+    print("{} 4일 판매량: {}잔, 하루 평균 판매량: {}".format(header_list[4], sum(cafelatte), sum(cafelatte)/len(cafelatte)))
+
+    ## 7. for 문으로 총 정리
+
+    total_sum = [sum(espresso), sum(americano), sum(cappucino), sum(cafelatte)]
+    total_mean = [sum(espresso)/len(espresso), sum(americano)/len(americano), sum(cappucino)/len(cappucino), sum(cafelatte)/len(cafelatte)]
+
+    for line k in range(len(total_sum)) :
+        print("{0} 판매량".format(header_list[k+1]))
+        print("4일 전체 : {0}, 하루 평균 : {1}".format(total_sum[k]),total_mean[k])
+    ```
+    ###
