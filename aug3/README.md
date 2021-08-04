@@ -146,12 +146,30 @@ _______
             * 공백값을 제외한 랜덤 값을 반환
         * random.`sample`(population, k)
             * 모집단에서 중복되지 않은 k개의 인자 반환
-    * 날짜 및 시간(`datetime`)
-    * 달력(`calendar`)
+    * `import datetime` : 날짜 및 시간(`datetime`)
+        * date 클래스, time 클래스, datetime 클래스
+        * 객체변수 = `module_name.class_name`(variable)
+        * 빼기 연산도 가능함
+        * `{:Y %m %d, %H %M %S}`.format(now), 대소문자 구분을 해야함
+    * `import calendar` : 달력 생성(`calendar`)
+        * 모듈 속 요일에 해당하는 상수
+            * `calendar.MONDAY` = 0 
+            * `calendar.SUNDAY` = 6 
+        * 모듈 속 함수
+            * `.calendar`(year, m) : 전체 달력을 문자열로 반환, m 은 표시할 일 간 공백의 숫자 (기본은 3)
+            * `.month`(year, month) : 해당 연월을 문자열로 반환
+            * `.monthrange`(year, month) : 지정한 연도와 월의 시작 날짜와 일수를 반환
+            * `.firstweekday`() : 달력에 표시되는 일주일의 시작 요일을 알 수 있음
+            * `.setfirstweekday`(weekday) : 일주일 시작 요일을 지정
+            * `.weekday`(year, month, day) : 원하는 날짜의 요일을 확인함
+            * `.isleap`(year) : 해당 년도가 윤년인지 아닌지 boolean 값으로 출력
+        
 
     ###
     ```python
     
+    ## random
+
     import random()
     
     random.random()     # 0 ~ 1 사이의 임의의 실수 반환
@@ -164,5 +182,109 @@ _______
 
     random.choice("My names is James")      # 공백 제외한 랜덤 값 반환
     random.sample("My name is James", 4)    # 중복되지 않은 값 4개를 반환
+
+    ## datetime
+    
+    import datetime
+
+    date_obj = datetime.date(year, month, day)
+    time_obj = datetime.time(hour, minute, second)
+    datetime_obj = datetime.datetime(year, month, day, hour, minute, second)
+
+    set_day = datetime.date(2021, 8, 4)
+    print(set_day)
+
+    print("{}, {}, {}".format(set_day.year, set_day.month, set_day.day))
+
+    ## 빼기 연산
+    
+    day1 = datetime.date(2021, 4, 1)
+    day2 = datetime.date(2021, 7, 10)
+    diff_day = day2 - day1
+    print(diff_day)
+
+    type(day1)      # 결과값 : datetime.date 클래스값
+    type(diff_day)  # 결과값 : datetime.timedelta 
+    
+    ## today()
+
+    print(datetime.date.today())
+
+    ## time 클래스
+
+    set_time = datetime.time(15,30,45)
+    print(set_time)
+
+    set_dt = datetime.datetime(2021, 8, 4, 10, 20 ,0)
+    print(set_dt)
+
+    print('Date {0}, {1}, {2}'.format(set_dt.date.year, set_dt.month, set_dt.day))
+    print("Time {0}, {1}, {2}".format(set_dt.hour, set_dt.minute, set_dt.second))
+    
+    now = datetime.datetime.now()
+    print(now)
+    
+    ##
+
+    print("{:%Y %m %d, %H %M %S}".format(now))
+
+    ## 좀 더 간편하게 datetime 쓰기
+
+    from datetime import date, time, datetime
+    print(date(2021, 7, 1))
+    print(date.today())
     ```
     ###
+* 패키지(`package`)
+    > 여러 개의 모듈을 모아둔 것. 폴더 단위로 관리함
+    * `__init__.py` 파일을 폴더에 생성시키는게 유리 
+    * 호출 방법
+        * `import` package.folder.module
+            * 호출 시 패키지 이름 > 폴더이름 > 모듈이름 순으로 입력
+        * `from` package.folder `import` module
+        * `from` package.folder.module `import` function1, function2, ...
+    
+    ```python
+    %%writefile image/io_file/imgread.py
+
+    def pngread() :
+        print("pngread in imgread module")
+    def jpgread() :
+        print("jpgread in imgread module")
+    
+    ## 호출 방법
+
+    # 1
+    
+    import image.io_file.imgread         # image: 패키지이름 io_file: 패키지가 존재하는 폴더, imgread: 모듈 import
+    image.io_file.imgread.pngread()
+
+    # 2
+
+    from image.io_file import imgread
+    imgread.pngread()
+
+    # 3 
+
+    from image.io_file.imgread import pngread()
+    pngread()
+
+    # 4
+
+    from image.io_file.imgread import pngread(), jpgread()
+    pngread()
+    jpgread()
+    
+    # 5
+
+    from image.io_file.imgread import *   # 모든 모듈을 import
+    pngread()
+    jpgread()
+
+    # 6
+
+    from image.io_file.imgread import pngread() as pread
+    from image.io_file.imgread import jpgread() as jread
+    pread()
+    jread()
+    ```
