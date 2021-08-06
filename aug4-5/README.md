@@ -192,7 +192,7 @@ ___
     
     
         class FoldingBicycle(Bicycle) :                             # Sub class
-            def __init__(self, wheel_size, color, state) :      # sub class에 state 속성 추가
+            def __init__(self, wheel_size, color, state) :          # sub class에 state 속성 추가
                 
                 Bicycle.__init__(self, wheel_size, color)           # super().__init__(wheel_size, color) 로 대체 가능
                 self.state = state
