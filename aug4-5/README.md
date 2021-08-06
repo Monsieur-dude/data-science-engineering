@@ -42,10 +42,13 @@ ___
                 * `@classethod` 를 입력해야 함
                 * 생성된 전체 객체의 수 등 클래스 전체를 관리하는 함수로 주로 이용
                 * *`Class_name`*.method_name()
+    * 클래스 상속(`class inheritance`)
+        * 부모(`parent class, super class`), 자식 클래스(`child class, sub class`) 
+        * 자식클래스는 부모 클래스의 속성, 메소드를 그대로 이어받거나 자식 클래스 내에 따로 추가할 수 있음
+        * `class` *`ChildClass`*(`ParentClass`) :
 
     ### 
     ```python
-    
     ## 클래스 선언
 
     class Class_name() :
@@ -117,7 +120,6 @@ ___
 
     car1 = Car("Big", "Red")
     car2 = Car("Middle", "Blue")
-
     ```
     ###
 
@@ -169,5 +171,39 @@ ___
 
     car2 = Car("big", "green")                  # 두번째 객체 추가
     Car.count_instance()                        # 총 인스턴스 개수 2
+    ```
+    ###
+
+    ###
+    ```python
+    ## 클래스 상속 (Class inheritance)
+
+        class Bicycle() :                                            # Super class
+
+        def __init__(self, wheel_size, color) :
+            self.wheel_size = wheel_size
+            self.color = color     
+        def move(self, speed) :
+            print("Bicycle: moving forward {} per hour".format(speed))
+        def turn(self, direction) :
+            print("Bicycle: {} turn".format(direction))
+        def stop(self) :
+            print("Bicycle({}, {}): stop".format(self.wheel_size, self.color)
+    
+    
+        class FoldingBicycle(Bicycle) :                             # Sub class
+            def __init__(self, wheel_size, color, state) :      # sub class에 state 속성 추가
+                
+                Bicycle.__init__(self, wheel_size, color)           # super().__init__(wheel_size, color) 로 대체 가능
+                self.state = state
+
+            def fold(self) :            # sub class 에 메서드 추가
+                self.state = "folding"
+                print("Bicycle : folding, state = {}".format(self.state))
+
+            def unfold(self) :          # sub class 에 메서드 추가
+                self.state = "unfolding"
+                print("Bicycle : unfolding, state = {}".format(self.state))
+    
     ```
     ###
