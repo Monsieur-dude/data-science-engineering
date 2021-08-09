@@ -179,7 +179,7 @@ print(c)                    # {1, 2, 3, 4, 5}
     print(dict1_values) # [seoul, busan, ulsal, suwon, japan]
     
     ## .items()
-    dict1.items() 		s# dict_items ([(1, 'seoul', (2, 'busan'), (4, 'ulsal'), (5, 'suwon'), (100, 'japan')])
+    dict1.items() 		 # dict_items ([(1, 'seoul', (2, 'busan'), (4, 'ulsal'), (5, 'suwon'), (100, 'japan')])
     type(dict1.items()) # dict_items
     dict1_items = list(dict1.items()) # key 와 value 쌍으로 존재하는 튜플을 한 데이터로 갖는 list 타입으로 변경 
     print(dict1_items) # [(1, 'seoul', (2, 'busan'), (4, 'ulsal'), (5, 'suwon'), (100, 'japan')]
