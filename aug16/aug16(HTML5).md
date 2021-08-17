@@ -11,7 +11,7 @@
         * 코드에 대한 설명을 기록할 때 사용, 파이썬에서 # 과 비슷한 역할
 
 * HTML5 페이지의 구조와 작성법
-    * 구조[![구조](https://lh3.googleusercontent.com/proxy/TlZfbl4lpJSiJVSGLrZ1uw2uqGAFREScEmE2KKuCqIgyAy08fqzhYNc5zuVbsQB80yg6Vog1cCeWNKaKsBiHGX1lc_8Iwj54fqF3z_Ma)](http://www.devkuma.com/books/pages/115)
+    * [![구조](http://www.devkuma.com/data/page/115/html_template.png)](http://www.devkuma.com/books/pages/115)
     * 스타일시트 작성과 실행
         * 내부 스타일 : HTML 페이지 내부에서 style 태그를 사용, 스타일시트가 짧은 경우에 사용함
         * 외부 스타일 : 스타일시트를 별도로 생성해 link 태그의 href 속성을 이용, 협업이나 프로젝트 시 사용
@@ -38,9 +38,40 @@
                 * #name : id 속성이 name 태그 위치로 이동
             * 메일경로
                 * mailto : emailaddress@gmail.com 해당 주소로 메일 전송
-    
-    
-    
+        * hyper link 설정
+            1. 특정 웹 페이지에 연결
+            2. 웹 페이지 내부에 연결
+                * #alpha, #beta, #gamma ...
+    * 글자 모양 태그
+        * b(bold), i(italic), small, sub(subscript)- 아래첨자, sup(superscript) - 위첨자, ins(insert) - 밑줄 글자, del(delete) - 취소선
+    * 네비게이션 메뉴
+        * ul(unordered list) - 점으로 시작
+        * ol(ordered list) - 숫자로 시작
+        * li(list item) - 목록 요소
+    * 테이블 태그
+        * table : 표 삽입
+        * tr(table row) - 행 삽입, th(table heading) - 제목 생성, td(table data) - 일반 셀 생성
+        * table border : 테두리 두께 지정
+        * th, td : colspan - 셀 너비, rowspan - 셀 높이
+    * 미디어 태그
+        * 미디어 태그 속성
+            * img 태그
+                * src(source) : 경로 지정
+                * alt(alternative) : 이미지 없을 때 나오는 글자 지정
+                * width
+                * height
+            * audio, video
+                * src
+                * preload
+                * autoplay  
+                * loop
+                * controls : 재생 도구 출력       
+    * 입력 양식 태그
+        * form
+            * action : 전송위치
+            * method :
+                * get : 주소에 데이터를 입력해서 전달
+                * post : 주소 변경 없이 노출시키지 않고 데이터 전달
     
     ###
     ```html
