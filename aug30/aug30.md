@@ -43,13 +43,43 @@
     * stored procedure : SQL 문을 묶어서 함수같은 역할을 함
     * trigger : insert, update 또는 Delete 작업을 실행 시 작업이 실했됐음을 알리는 명령어
     * 문법, 기본
-        * `SELECT` columnName 
-            1. [`FROM` tableName]
-            2. [`WHERE` condition]
-            3. [`GROUP BY` {columnName | expr | position}]
-            4. [`HAVING` where_condition]
-            5. [`ORDER BY` {columnName | expr | position}]
-        * `DROP TABLE` tableName : 테이블를 삭제
-        * `USE` databaseName;
         * `--` 한 줄로 된 주석
         * `/*` `*/` 블록을 주석
+        * `USE` databaseName;
+        * `SHOW` databases;
+        * `SELECT` database() : 현재 사용중인 DB 출력
+        * `SELECT` columnName;
+            1. `FROM` tableName
+            2. `WHERE` condition
+                * `BETWEEN` number1 `AND` number2;
+                * `IN` (data1, data2, ...);
+                * `LIKE` text`%`;
+                    * `%` : 글자수를 포함 X
+                    * `-` : 글자수를 포함 O
+                * SubQuery 
+                    * query 의 where 와 subquerydml select 는 같아야 함, 괄호로 감싸줘야 함
+                    * ANY, ALL, SOME
+                    * ex) select * from table where height > `(select height from table where name = 'James')`;
+            3. `GROUP BY` {columnName | expr | position}
+                * `sum`(columnName)
+                * `avg`()
+                * `max`()
+                * `count`()
+                * `count`(`distinct`) : 중복데이터 제외
+                * `stdev`() : 표준편차
+                * `var_samp`() : 분산
+                * `WITH ROLLUP` : 중간합계를 계산
+            4. `HAVING` where_condition 
+                * GROUP BY에 쓰인 집계함수에 대해서 조건을 제한함
+            5. `ORDER BY` {columnName | expr | position}
+                * 출력 순서만 바꿔주는 구문
+                * 기본적으로 asc(ascending) 정렬, 내림차순을 원하면 columnName 뒤에 desc(descending)
+                * `DISTINCT` 중복 데이터는 1번만 출력
+                * `LIMIT` n1, n2 : n1 번째 데이터에서 n2개만큼 출력
+        * `CREATE TABLE` tableName (SELECT columns from tableName) 
+        * `DROP TABLE` tableName; : 테이블를 삭제
+        * `INSERT` [INTO] tableName[(col1, col2, ...)] VALUES (data1, data2 ...)
+            * `AUTO_INCREMENT` 자동으로 증가하는 값 입력함
+        * `UPDATE` tableName `SET` col1 = data1, col2 = data2,... `WHERE` condition;
+        * `DELETE` `FROM` tableName `WHERE` condition; 
+        
